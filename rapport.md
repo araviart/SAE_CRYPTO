@@ -4,6 +4,7 @@
 - **Noms :** Pigoreau, Raviart
 - **Prénoms :** Nathan, Alexandre
 - **Groupes :** 23, 22
+- **Lien du projet :** [gitHub](https://github.com/araviart/SAE_CRYPTO)
 
 ---
 
@@ -35,8 +36,15 @@
 ### Répartition des Tâches :
 
 - Nathan Pigoreau :
+   - Partie 2 : Un peu d'aide partie python trouver clef avec image
+   - Partie 3 : Analyse des messages
+   - Rédaction du rapport
 
 - Alexandre Raviart :
+   - Partie 1 : Premières tentatives
+   - Réponse question partie 2 : Un peu d'aide
+   - Partie 4 : Un peu de recul
+   - Rédaction du rapport
 
 
 ### Partie 1: Premières tentatives
@@ -113,3 +121,54 @@ Les temps d'exécution des fonctions de cassage sont mesurés en utilisant la fo
    - Pour le cassage astucieux le temps d'éxécution est de 14.942676782608032 secondes pour un total de 1024 + 63 actions soit 1087 actions donc un total de environ 72 actions par seconde , donc pour le temps maximum on aurait 2048 * 13 soit environ 147 456 secondes qui nous donne environ 2 457 minutes ou environ 41 heures.
 
    Ce qui nous donne une différence de temps d'éxécution maximale de 10 153 heures soit environ 423 jours soit un peu plus d'un an de différence entre le cassage brutal et le cassage astucieux.
+
+### Partie 2: Un peu d’aide
+
+1. **AES 256 bits:**
+   - AES avec des clés de 256 bits est considéré comme très sécurisé. Il est actuellement pratiquement impossible à casser en utilisant des méthodes d'attaque connues.
+
+2. **Évaluation expérimentale:**
+   ```bash
+   Temps d'exécution pour AES - Cryptage : 0.0030002593994140625
+   Temps d'exécution pour AES - Décryptage : 0.007001161575317383
+   Temps d'exécution pour SDES - Cryptage : 0.11375284194946289
+   Temps d'exécution pour SDES - Décryptage : 0.10687613487243652
+   ```
+   
+
+### Partie 3: Analyse des messages
+
+Dans cette section, nous avons utilisé la bibliothèque Scapy pour capturer et déchiffrer des messages. Le code source est disponible dans le fichier [part3.py](part3.py) du même dossier que ce rapport.
+
+Le processus de déchiffrement utilise une clé de 256 bits (`clef_256`) définie dans le fichier de constantes. Les messages capturés sont traités à l'aide de la bibliothèque Crypto et de l'algorithme de chiffrement AES en mode CBC.
+
+La fonction `filter_packets` est responsable de filtrer les paquets capturés et d'extraire les données chiffrées, puis de les déchiffrer en utilisant la clé et le vecteur d'initialisation (IV). Les messages déchiffrés sont ensuite affichés en UTF-8, à moins qu'une erreur de déchiffrement ne survienne. Dans ce cas, le message est affiché en hexadécimal.
+
+La fonction `main` est responsable de lancer la capture et d'appeler la fonction `filter_packets` pour chaque paquet capturé.
+
+1. **Messages déchiffrés:**
+   - Les messages déchiffrés sont affichés dans le terminal. Ils sont afficher dans le terminal après l'éxécution du script.
+
+   - Voici l'affichage : 
+   
+      ```bash
+      La crypto c'est trop bien!
+      Je suis complètement d'accord!
+      ```
+
+### Partie 4: Un peu de recul
+
+1. **Utilisation de la même clé par Alice et Bob:**
+   - Ce n'est généralement pas une bonne pratique de toujours utiliser la même clé. Les clés devraient être régulièrement mises à jour pour renforcer la sécurité. En cas de compromission, une clé unique compromettrait tous les échanges passés et futurs.
+
+2. **Protocole PlutotBonneConfidentialité inspiré d'un vrai protocole réseau:**
+   - Le protocole PlutotBonneConfidentialité semble s'inspirer du protocole SSL/TLS. La partie associée à la certification des clés, qui est absente dans PlutotBonneConfidentialité, est probablement liée au processus de vérification des certificats pour assurer l'authenticité des clés publiques.
+
+3. **Autres exemples d'utilisation utile de ce protocole:**
+   - Outre l'échange de messages romantiques, ce protocole peut être utile dans des contextes tels que la transmission sécurisée de données financières, la communication entre entreprises partenaires ou toute situation nécessitant une confidentialité élevée.
+
+4. **Applications de messagerie utilisant un chiffrement de bout en bout:**
+   - Deux exemples d'applications sont WhatsApp et Signal. Ces applications utilisent des mécanismes cryptographiques robustes pour garantir que seuls les destinataires prévus peuvent déchiffrer les messages.
+
+5. **Lois incitant à déchiffrer les communications:**
+   - Les arguments en faveur de ces lois soulignent souvent la nécessité de prévenir la criminalité en ligne, le terrorisme ou d'autres activités illicites. Cependant, ces lois suscitent des préoccupations majeures en matière de vie privée, car elles pourraient permettre un accès excessif aux communications personnelles sans surveillance adéquate. Les opposants soulignent également que ces lois pourraient créer des vulnérabilités exploitables par des acteurs malveillants.
