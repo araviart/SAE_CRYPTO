@@ -172,3 +172,10 @@ La fonction `main` est responsable de lancer la capture et d'appeler la fonction
 
 5. **Lois incitant à déchiffrer les communications:**
    - Les arguments en faveur de ces lois soulignent souvent la nécessité de prévenir la criminalité en ligne, le terrorisme ou d'autres activités illicites. Cependant, ces lois suscitent des préoccupations majeures en matière de vie privée, car elles pourraient permettre un accès excessif aux communications personnelles sans surveillance adéquate. Les opposants soulignent également que ces lois pourraient créer des vulnérabilités exploitables par des acteurs malveillants.
+
+## Requirements
+
+Pour reproduire l'environnement virtuel utilisé dans ce projet, veuillez installer les dépendances répertoriées dans le fichier [requirements.txt](requirements.txt). Utilisez la commande suivante dans votre terminal pour installer les dépendances :
+
+```bash
+pip install -r requirements.txt
